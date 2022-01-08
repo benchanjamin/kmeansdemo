@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>K-Means Demo</title>
+
+
+    <!-- JQuery 3.6.0 Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            referrerpolicy="no-referrer"></script>
+
+    <!-- Link Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Socket IO 4.4.1 Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"
+            integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Dropzone 4.3.0 Library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+
+    <!-- Initializes all global variables for JS functions -->
+    <!--    <script src="{{ url_for('static', filename='js/globalVariables.js') }}"></script>-->
+
+    <!-- My Personal JS Functions -->
+    <script src="{{ url_for('static', filename='js/formFunctions.js') }}"></script>
+    <!--    <script src="{{ url_for('static', filename='js/imageFunctions.js') }}"></script>-->
+    <!--    <script src="{{ url_for('static', filename='js/textFunctions.js') }}"></script>-->
+    <!--    <script src="{{ url_for('static', filename='js/markerFunctions.js') }}"></script>-->
+    <!--    <script src="{{ url_for('static', filename='js/mapFunctions.js') }}"></script>-->
+
+    <!-- My Personal CSS Functions -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <form action="{{ url_for('handle_pic') }}" id="submit-form" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="segments" class="col-form-label required-field"># of Segments</label>
+            <input type="number" id="segments" class="form-control" name="segments" value="0"
+                   min=5 max=180 required>
+        </div>
+        <div class="form-group">
+            <label for="iterations" class="col-form-label required-field"># of Iterations</label>
+            <input type="number" id="iterations" class="form-control" name="iterations" value="0"
+                   min=5 max=180 required>
+        </div>
+        <div class="form-group">
+            <div class="submit-container">
+
+                <div id="photo-init-buttons">
+                <span class="btn btn-success fileinput-submit-button dz-clickable flex-container">
+                                          <i class="glyphicon glyphicon-plus"></i>
+                                          <span>Add photo</span>
+                                    </span>
+                </div>
+
+                <div class="table table-striped files" id="submit-previews">
+                    <div id="submit-template" class="file-row dz-image-preview">
+                        <!-- This is used as the file preview template -->
+                        <div>
+                            <span class="preview"><img data-dz-thumbnail class="submit-thumbnail"></span>
+                        </div>
+                        <div>
+                            <p class="name" data-dz-name></p>
+                        </div>
+                        <div>
+                            <button data-dz-remove class="btn btn-danger delete pull-right">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" form="submit-form" id="submitImage"
+                class="btn btn-primary">
+            Segment Image Using K-Means
+        </button>
+    </form>
+</div>
+<div class="container">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        dropzoneInit();
+        let socket = io.connect('http://127.0.0.1:5000/');
+
+
+    })
+</script>
+
+</body>
+</html>

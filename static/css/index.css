@@ -1,0 +1,37 @@
+div.table {
+    display: table;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+div.table .file-row {
+    display: table-row;
+    background: #f9f9f9;
+}
+
+div.table .file-row > div {
+    display: table-cell;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+#submit-previews .file-row.dz-success .delete {
+    display: block;
+}
+
+#photo-init-buttons {
+    padding-bottom: 10px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.edit-thumbnail {
+    object-fit: cover;
+    height: 80px;
+    width: 80px;
+}
+
+
+

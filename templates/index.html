@@ -54,10 +54,22 @@
                         number of segments, </strong> minimizes the sum of
                     squared distances between other points and the locations of k centroids. In our case, each of these
                     k centroids is an RGB value that seeks to minimize the sum of squared distances between it and
-                    other pixels it is closest in value compared to other centroids. The <strong>number of iterations</strong> increases
+                    other pixels it is closest in value compared to other centroids. The <strong>number of
+                        iterations</strong> increases
                     the likelihood that a local minimum
-                    is reached where all pixels in the image are labeled according to one of the k centroids they are closest
+                    is reached where all pixels in the image are labeled according to one of the k centroids they are
+                    closest
                     to and their labels cannot be further changed by the k-means algorithm.</p>
+
+                <p>In this web app, I implemented the k-means algorithm efficiently using the Numpy and OpenCV Python
+                    libraries within a Flask backend. The SocketIO Python library updates the progress bar below when the
+                    uploaded
+                    image is processing. For deployment, I used the Gunicorn and Eventlet Python libraries
+                    to start the HTTP server on Heroku.</p>
+                <p>To run the app, simply add an image below and edit the number of
+                    segments and number of iterations to your liking. To prevent intensive computation, the
+                    number of segments is limited between 1 inclusive and 9 inclusive, and the number of iterations
+                    is limited between 1 inclusive and 100 inclusive. Enjoy!</p>
                 <form action="{{ url_for('handle_pic') }}" id="submit-form" method="post" enctype="multipart/form-data">
 
                     <div class="row">

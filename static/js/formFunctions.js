@@ -75,8 +75,6 @@ function dropzoneInit() {
                             $(this).appendTo(target);
                         });
                 }
-
-                myDropzone.removeAllFiles(true);
                 $('#result-image-container').empty()
                 loadImage(response.message, '#result-image-container')
             });
@@ -85,7 +83,6 @@ function dropzoneInit() {
                 if (myDropzone.files.length > 1) {
                     // pass
                 } else {
-                    myDropzone.removeAllFiles(true);
                     alert(response.message);
                 }
             });

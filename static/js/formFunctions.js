@@ -57,22 +57,27 @@ function dropzoneInit() {
                 }
 
 
-                let dropzoneFileCopy = myDropzone.files.slice(0)[0]
+                let dropzoneFileCopy = myDropzone.files.slice(0)[0];
                 myDropzone.removeAllFiles(true);
-                myDropzone.addFile(dropzoneFileCopy)
-                $('#result-image-container').empty()
-                loadImage(response.message, '#result-image-container')
+                myDropzone.addFile(dropzoneFileCopy);
+                $('#result-image-container').empty();
+                loadImage(response.message, '#result-image-container');
+                $('html, body').animate({scrollTop: $('#result-image-container').offset().top}, 2000);
+                return false;
             });
 
             this.on("error", function (files, response) {
                 if (myDropzone.files.length > 1) {
                     // pass
-                }
-                else if (myDropzone.files.length === 1) {
+                } else if (myDropzone.files.length === 1 && response === 'You can not upload any more files.') {
                     // pass
-                }else {
-                    myDropzone.removeAllFiles(true);
+                } else if (myDropzone.files.length === 0) {
+                    alert("Please add an image.")
+                } else {
                     alert(response.message);
+                    let dropzoneFileCopy = myDropzone.files.slice(0)[0];
+                    myDropzone.removeAllFiles(true);
+                    myDropzone.addFile(dropzoneFileCopy);
                 }
             });
         }

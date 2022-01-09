@@ -43,10 +43,21 @@
 
         <div class="col-xl-7">
             <div class="container p-5 my-5 border">
-                <h2>K-means Image Segmentation Demo</h2>
+                <h2>K-Means Image Segmentation Demo</h2>
                 <h5>by <a href="https://benchanjamin.com/" target="_blank" rel="noopener noreferrer">Benjamin Chan</a>
                 </h5>
-                <p>Hi</p>
+                <p>Image segmentation is the process of partitioning an image into segments of related
+                    pixels with the goal of making the image more simple and easier to analyze in more sophisticated
+                    computer vision processes such as object detection.</p>
+                <p>K-means is a parameterized algorithm that, when given a number k that is also known as the desired
+                    <strong>
+                        number of segments, </strong> minimizes the sum of
+                    squared distances between other points and the locations of k centroids. In our case, each of these
+                    k centroids is an RGB value that seeks to minimize the sum of squared distances between it and
+                    other pixels it is closest in value compared to other centroids. The <strong>number of iterations</strong> increases
+                    the likelihood that a local minimum
+                    is reached where all pixels in the image are labeled according to one of the k centroids they are closest
+                    to and their labels cannot be further changed by the k-means algorithm.</p>
                 <form action="{{ url_for('handle_pic') }}" id="submit-form" method="post" enctype="multipart/form-data">
 
                     <div class="row">
@@ -93,7 +104,7 @@
 
                     <button type="submit" form="submit-form" id="submitImage"
                             class="btn btn-primary">
-                        Segment Image Using K-means Algorithm
+                        Segment Image Using K-Means Algorithm
                     </button>
                 </form>
 
@@ -111,7 +122,7 @@
 
         <div class="col-xl-5">
             <div class="container my-5 p-5 border">
-                <h3>Your K-means Image Segmentation Result:</h3>
+                <h3>Your K-Means Image Segmentation Result:</h3>
                 <div id="result-image-container">
 
                 </div>

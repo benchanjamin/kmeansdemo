@@ -50,7 +50,7 @@ function dropzoneInit() {
 
             this.on("success", function (files, response) {
                 function loadImage(path, target) {
-                    $('<img src="' + path + ' "style="width:100%;max-width:310px;margin-top:2%" class="image">')
+                    $('<img src="' + path + ' "style="width:100%;max-width:500px;%" class="image">')
                         .on('load', function () {
                             $(this).appendTo(target);
                         });
@@ -62,7 +62,8 @@ function dropzoneInit() {
                 myDropzone.addFile(dropzoneFileCopy);
                 $('#result-image-container').empty();
                 loadImage(response.message, '#result-image-container');
-                $('html, body').animate({scrollTop: $('#result-image-container').offset().top}, 2000);
+                // $('html, body').animate({scrollTop: $('#result-image-container').offset().top +
+                //         $(window).height()}, 1000);
                 return false;
             });
 

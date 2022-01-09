@@ -52,6 +52,7 @@ div.table .file-row > div {
 #result-image-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .notransition {

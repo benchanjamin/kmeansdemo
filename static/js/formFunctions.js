@@ -14,6 +14,7 @@ function dropzoneInit() {
         maxFiles: 1,
         parallelUploads: 100,
         previewTemplate: submitPreviewTemplate,
+        acceptedFiles: ".jpeg,.jpg,.png,.heic",
         previewsContainer: "#submit-previews", // Define the container to display the previews
         clickable: ".fileinput-submit-button", // Define the element that should be used as click trigger to select files.,
         // The setting up of the dropzone

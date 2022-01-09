@@ -29,7 +29,7 @@ function dropzoneInit() {
             $("#submitImage").on("click", function (e) {
                 // Make sure that the form isn't actually being sent.
                 e.preventDefault();
-                // $('#inputFormModal').modal('hide');
+                $('#result-image-container').empty();
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();

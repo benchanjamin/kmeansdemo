@@ -1,11 +1,15 @@
 let submitPreviewTemplate = null;
 let submitDropzone = null;
 let uploadCanceled = false;
+let dropzoneFileCopy = null;
 
 function dropzoneInit() {
     submitPreviewTemplate = $("#submit-previews").html();
     $("#submit-template").remove();
 
+    Dropzone.prototype.cancelUpload = function () {
+        //pass
+    }
     submitDropzone = new Dropzone(".submit-container", { // Make the whole body a dropzone
         url: "/handlePic", // Set the url
         thumbnailWidth: 80,
@@ -48,6 +52,8 @@ function dropzoneInit() {
                 $.each(data, function (key, el) {
                     formData.append(el.name, el.value);
                 });
+                dropzoneFileCopy = myDropzone.files.slice(0)[0];
+                myDropzone.removeAllFiles(true);
             });
 
             this.on("success", function (files, response) {
@@ -58,15 +64,9 @@ function dropzoneInit() {
                         });
                 }
 
-
-                let dropzoneFileCopy = myDropzone.files.slice(0)[0];
-                myDropzone.removeAllFiles(true);
                 myDropzone.addFile(dropzoneFileCopy);
                 $('#result-image-container').empty();
                 loadImage(response.message, '#result-image-container');
-                // $('html, body').animate({scrollTop: $('#result-image-container').offset().top +
-                //         $(window).height()}, 1000);
-                return false;
             });
 
             this.on("error", function (files, response) {

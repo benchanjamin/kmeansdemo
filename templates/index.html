@@ -113,6 +113,7 @@
             <div class="container my-5 p-5 border">
                 <h3>Your K-means Image Segmentation Result:</h3>
                 <div id="result-image-container">
+
                 </div>
             </div>
         </div>
@@ -137,6 +138,25 @@
         socket.on('upload_progress', function (percentage) {
             $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(
                 parseFloat(percentage)))).css('width', String(Math.ceil(parseFloat(percentage))) + '%');
+        })
+
+        socket.on('start_upload', function () {
+            $("#result-image-container").append("<div class=\"loadingio-spinner-spinner-807aso1xqpd\">\n" +
+                "                        <div class=\"ldio-cv3l445k487\">\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                            <div></div>\n" +
+                "                        </div>\n" +
+                "                    </div>")
         })
 
     })

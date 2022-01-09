@@ -53,6 +53,7 @@ def handle_pic():
             message = "Please submit an image file."
             return jsonify(message=message), 400
 
+        socket_io.emit('start_upload')
         cloudinary.config(
             cloud_name=os.getenv("CLOUD_NAME"),
             api_key=os.getenv("API_KEY"),
@@ -82,6 +83,7 @@ def handle_pic():
         url_https = url_http.replace('http://', 'https://')
         message = url_https
         return jsonify(message=message, success=True)
-    
+
+
 if __name__ == "__main__":
     socket_io.run(app)

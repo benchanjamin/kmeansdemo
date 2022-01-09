@@ -41,6 +41,8 @@ def kmeans(x, k, niter, socket_io):
     centroids: array of shape (K, D)
     labels: array of shape (height*width, )
     """
+
+    np.random.seed(123)
     idx = np.random.choice(len(x), k, replace=False)
 
     # Randomly choose centroids

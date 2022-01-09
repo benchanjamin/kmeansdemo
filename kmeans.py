@@ -1,4 +1,5 @@
 import numpy as np
+from flask_socketio import SocketIO, emit
 
 LABEL_MAP = {
     0: [255, 0, 0],
@@ -48,6 +49,9 @@ def kmeans(x, k, niter, socket_io):
     # Initialize to hold indices
     min_k_indices = None
 
+    progress = 0
+    interval = 100 / (niter * k)
+
     # loop for niter iterations
     for itr in range(niter):
         min_k_indices = closest_to_centroid(x, centroids)
@@ -55,6 +59,8 @@ def kmeans(x, k, niter, socket_io):
             clustered_x = x[min_k_indices == i]
             new_centroid_row = np.mean(clustered_x, axis=0)
             centroids[i] = new_centroid_row
+            progress += interval
+            socket_io.emit('upload_progress', progress, broadcast=False)
 
     # Initialize labels
     labels = min_k_indices

@@ -44,3 +44,12 @@ div.table .file-row > div {
     background-color: #bb2d3b !important;
     border-color: #b02a37 !important;
 }
+
+.progress {
+    margin-top: 10px;
+}
+
+#result-image-container {
+    display: flex;
+    justify-content: center;
+}

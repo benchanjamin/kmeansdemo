@@ -76,6 +76,7 @@ function dropzoneInit() {
 
                 $('#submit-form').trigger("reset");
                 myDropzone.removeAllFiles(true);
+                $('#result-image-container').empty()
                 loadImage(response.message, '#result-image-container')
                 alert(response.message);
                 alert('Your new event has been successfully submitted!');

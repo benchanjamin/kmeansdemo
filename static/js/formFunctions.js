@@ -1,5 +1,6 @@
 let submitPreviewTemplate = null;
 let submitDropzone = null;
+let uploadCanceled = false;
 
 function dropzoneInit() {
     submitPreviewTemplate = $("#submit-previews").html();
@@ -31,6 +32,7 @@ function dropzoneInit() {
                 // Make sure that the form isn't actually being sent.
                 e.preventDefault();
                 $('#result-image-container').empty();
+                uploadCanceled = false
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();
@@ -78,6 +80,7 @@ function dropzoneInit() {
                     alert("Upload canceled.")
                     $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%')
                     $('#result-image-container').empty();
+                    uploadCanceled = true;
                 } else {
                     alert(response.message);
                     $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%')

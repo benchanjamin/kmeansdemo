@@ -136,8 +136,10 @@
         let socket = io();
 
         socket.on('upload_progress', function (percentage) {
-            $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(
-                parseFloat(percentage)))).css('width', String(Math.ceil(parseFloat(percentage))) + '%');
+            if (uploadCanceled === false) {
+                $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(
+                    parseFloat(percentage)))).css('width', String(Math.ceil(parseFloat(percentage))) + '%');
+            }
         })
 
         socket.on('start_upload', function () {

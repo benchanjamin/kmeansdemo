@@ -33,8 +33,8 @@ function dropzoneInit() {
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();
-                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%').text(
-                        '0%');
+                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%').addClass("" +
+                        "notransition");
                 } else {
                     alert("Please upload one image.")
                 }

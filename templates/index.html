@@ -120,8 +120,7 @@
 
         socket.on('upload_progress', function (percentage) {
             $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(
-                parseFloat(percentage)))).css('width', String(Math.ceil(parseFloat(percentage)))+ '%').text(
-                String(Math.round(parseFloat(percentage))) + '%');
+                parseFloat(percentage)))).css('width', String(Math.ceil(parseFloat(percentage)))+ '%');
         })
 
     })

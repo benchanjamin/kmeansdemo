@@ -53,3 +53,11 @@ div.table .file-row > div {
     display: flex;
     justify-content: center;
 }
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}

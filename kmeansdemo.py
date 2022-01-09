@@ -2,7 +2,6 @@ from flask import Flask, render_template, make_response, request, jsonify
 import os
 from flask_socketio import SocketIO, emit
 from kmeans import kmeans
-import matplotlib.pyplot as plt
 import cloudinary
 import cloudinary.uploader as cloud_upload
 import cv2
@@ -69,8 +68,6 @@ def handle_pic():
         height, width, number_of_channels = img.shape
         scale = 500 / max(height, width)  # The longer side will be resized to 500
         img = cv2.resize(img, (int(width * scale), int(height * scale)))
-        plt.imshow(img)
-        plt.show()
 
         # Vector the image to one-dimension
         x = img.reshape((-1, 3)).astype(np.float32)
@@ -79,8 +76,6 @@ def handle_pic():
         result = centroids[labels.flatten()]
         result_image = result.reshape(img.shape)
 
-        plt.imshow(result_image)
-        plt.show()
         _, jpeg = cv2.imencode('.jpeg', result_image)
         upload_result = cloud_upload.upload(jpeg.tobytes())
         url_http = upload_result['url']

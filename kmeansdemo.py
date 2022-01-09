@@ -22,6 +22,7 @@ def index():
 
 @app.route('/handlePic', methods=['POST'])
 def handle_pic():
+    socket_io.emit('upload_progress', 10)
     try:
         number_of_segments = int(request.form.get("segments"))
         number_of_iterations = int(request.form.get("iterations"))

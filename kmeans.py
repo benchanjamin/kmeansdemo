@@ -51,8 +51,8 @@ def kmeans(x, k, niter, socket_io):
     # Initialize to hold indices
     min_k_indices = None
 
-    progress = 0
-    interval = 100 / niter
+    progress = 10
+    interval = 90 / niter
 
     # loop for niter iterations
     for itr in range(niter):
@@ -62,7 +62,7 @@ def kmeans(x, k, niter, socket_io):
             new_centroid_row = np.mean(clustered_x, axis=0)
             centroids[i] = new_centroid_row
         progress += interval
-        socket_io.emit('upload_progress', progress, broadcast=False)
+        socket_io.emit('upload_progress', progress)
 
     # Initialize labels
     labels = min_k_indices

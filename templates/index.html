@@ -62,12 +62,14 @@
                     to and their labels cannot be further changed by the k-means algorithm.</p>
 
                 <p>In this web app, I implemented the k-means algorithm efficiently using the Numpy and OpenCV Python
-                    libraries within a Flask backend. The SocketIO Python library updates the progress bar below when the
+                    libraries within a Flask backend. The SocketIO Python library updates the progress bar below when
+                    the
                     uploaded
                     image is processing. For deployment, I used the Gunicorn and Eventlet Python libraries
                     to start the HTTP server on Heroku.</p>
                 <p>To run the app, simply add an image below, edit the number of
-                    segments and number of iterations to your liking, and then click the submit button to see the resulting segmented image either below or to the right. To prevent intensive computation, the
+                    segments and number of iterations to your liking, and then click the submit button to see the
+                    resulting segmented image either below or to the right. To prevent intensive computation, the
                     number of segments is limited between 1 inclusive and 9 inclusive, and the number of iterations
                     is limited between 1 inclusive and 100 inclusive. Enjoy!</p>
                 <form action="{{ url_for('handle_pic') }}" id="submit-form" method="post" enctype="multipart/form-data">

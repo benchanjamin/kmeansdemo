@@ -22,6 +22,7 @@ div.table .file-row > div {
 }
 
 #photo-init-buttons {
+    padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -34,4 +35,12 @@ div.table .file-row > div {
 }
 
 
+.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
 
+.btn-danger:hover {
+    background-color: #bb2d3b !important;
+    border-color: #b02a37 !important;
+}

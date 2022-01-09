@@ -33,8 +33,7 @@ function dropzoneInit() {
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();
-                }
-                else {
+                } else {
                     alert("Please upload one image.")
                 }
                 // } else {
@@ -68,8 +67,16 @@ function dropzoneInit() {
             });
 
             this.on("success", function (files, response) {
+                function loadImage(path, target) {
+                    $('<img src="' + path + ' "style="width:100%;max-width:310px;margin-top:2%" class="image">')
+                        .on('load', function () {
+                            $(this).appendTo(target);
+                        });
+                }
+
                 $('#submit-form').trigger("reset");
                 myDropzone.removeAllFiles(true);
+                loadImage(response.message, '#result-image-container')
                 alert(response.message);
                 alert('Your new event has been successfully submitted!');
             });

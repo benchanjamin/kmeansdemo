@@ -29,11 +29,11 @@ def handle_pic():
     except ValueError:
         message = "Please enter int values for '# of Segments' and '# of Iterations'"
         return jsonify(message=message), 400
-    if not number_of_segments:
-        message = "Please enter int values for '# of Segments' besides 0"
+    if not number_of_segments or not (1 <= number_of_segments <= 9):
+        message = "Please enter an int value for '# of Segments' between 1 inclusive and 9 inclusive"
         return jsonify(message=message), 400
-    if not number_of_iterations:
-        message = "Please enter int values for '# of Iterations' besides 0"
+    if not number_of_iterations or not (1 <= number_of_iterations <= 100):
+        message = "Please enter an int value for '# of Iterations' between 1 inclusive and 100 inclusive"
         return jsonify(message=message), 400
 
     picture_to_be_segmented = request.files.to_dict().values()

@@ -10,9 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             referrerpolicy="no-referrer"></script>
 
-    <!-- Link Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <!-- Socket IO 4.4.1 Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"
@@ -36,25 +37,31 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container p-5 my-5 border">
+    <h1>K-means Image Segmentation Web App</h1>
+    <h5>by <a href="https://benchanjamin.com/" target="_blank" rel="noopener noreferrer">Benjamin Chan</a></h5>
+    <p>Hi</p>
     <form action="{{ url_for('handle_pic') }}" id="submit-form" method="post" enctype="multipart/form-data">
-        <div class="form-group">
+
+        <div class="row">
+            <div class="col">
             <label for="segments" class="col-form-label required-field"># of Segments</label>
-            <input type="number" id="segments" class="form-control" name="segments" value="0"
-                   min=5 max=180 required>
-        </div>
-        <div class="form-group">
+            <input type="number" id="segments" class="form-control" name="segments" value="1"
+                   min=1 max=9 required>
+            </div>
+            <div class="col">
             <label for="iterations" class="col-form-label required-field"># of Iterations</label>
-            <input type="number" id="iterations" class="form-control" name="iterations" value="0"
-                   min=5 max=180 required>
+            <input type="number" id="iterations" class="form-control" name="iterations" value="1"
+                   min=1 max=100 required>
+            </div>
         </div>
         <div class="form-group">
             <div class="submit-container">
 
                 <div id="photo-init-buttons">
                 <span class="btn btn-success fileinput-submit-button dz-clickable flex-container">
-                                          <i class="glyphicon glyphicon-plus"></i>
-                                          <span>Add photo</span>
+                                          <i class="bi bi-plus"></i>
+                                          <span>Add Image</span>
                                     </span>
                 </div>
 
@@ -68,8 +75,8 @@
                             <p class="name" data-dz-name></p>
                         </div>
                         <div>
-                            <button data-dz-remove class="btn btn-danger delete pull-right">
-                                <i class="glyphicon glyphicon-trash"></i>
+                            <button type="button" data-dz-remove class="btn btn-danger delete float-end">
+                                <i class="bi bi-trash"></i>
                                 <span>Delete</span>
                             </button>
                         </div>
@@ -77,15 +84,25 @@
                 </div>
             </div>
         </div>
+
         <button type="submit" form="submit-form" id="submitImage"
                 class="btn btn-primary">
             Segment Image Using K-Means
         </button>
     </form>
 </div>
-<div class="container">
 
+
+<div class="container p-5 my-5 border">
+    <div id="result-image-container">
+    </div>
 </div>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
 
 <script>
     $(document).ready(function () {

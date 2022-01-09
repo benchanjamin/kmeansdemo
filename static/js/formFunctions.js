@@ -33,8 +33,7 @@ function dropzoneInit() {
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();
-                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%').addClass("" +
-                        "notransition");
+                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%');
                 } else {
                     alert("Please upload one image.")
                 }
@@ -76,6 +75,7 @@ function dropzoneInit() {
                     alert("Please add an image.")
                 } else {
                     alert(response.message);
+                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%')
                     let dropzoneFileCopy = myDropzone.files.slice(0)[0];
                     myDropzone.removeAllFiles(true);
                     myDropzone.addFile(dropzoneFileCopy);

@@ -74,14 +74,11 @@ function dropzoneInit() {
                     // pass
                 } else if (myDropzone.files.length === 1 && response === 'You can not upload any more files.') {
                     // pass
-                } else if (myDropzone.files.length === 0) {
-                    alert("Please add an image.")
                 } else if (response === 'Upload canceled.') {
                     // pass
                 } else {
                     alert(response.message);
                     $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%')
-                    let dropzoneFileCopy = myDropzone.files.slice(0)[0];
                     myDropzone.removeAllFiles(true);
                     myDropzone.addFile(dropzoneFileCopy);
                 }

@@ -28,20 +28,25 @@ def handle_pic():
         number_of_iterations = int(request.form.get("iterations"))
     except ValueError:
         message = "Please enter int values for '# of Segments' and '# of Iterations.'"
+        socket_io.emit('upload_progress', 0)
         return jsonify(message=message), 400
     if not number_of_segments or not (1 <= number_of_segments <= 9):
         message = "Please enter an int value for '# of Segments' between 1 inclusive and 9 inclusive."
+        socket_io.emit('upload_progress', 0)
         return jsonify(message=message), 400
     if not number_of_iterations or not (1 <= number_of_iterations <= 100):
         message = "Please enter an int value for '# of Iterations' between 1 inclusive and 100 inclusive."
+        socket_io.emit('upload_progress', 0)
         return jsonify(message=message), 400
 
     picture_to_be_segmented = request.files.to_dict().values()
     if len(picture_to_be_segmented) > 1:
         message = "You added more than one picture. Please submit only one image."
+        socket_io.emit('upload_progress', 0)
         return jsonify(message=message), 400
     if len(picture_to_be_segmented) == 0:
         message = "Please submit an image."
+        socket_io.emit('upload_progress', 0)
         return jsonify(message=message), 400
     for pic in picture_to_be_segmented:
         ALLOWED_EXTENSIONS_LOWER = {'png', 'jpg', 'jpeg', 'heic'}

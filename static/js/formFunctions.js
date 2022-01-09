@@ -33,6 +33,8 @@ function dropzoneInit() {
 
                 if (myDropzone.files.length) {
                     myDropzone.processQueue();
+                    $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%').text(
+                        '0%');
                 } else {
                     alert("Please upload one image.")
                 }
@@ -74,12 +76,9 @@ function dropzoneInit() {
                         });
                 }
 
-                $('#submit-form').trigger("reset");
                 myDropzone.removeAllFiles(true);
                 $('#result-image-container').empty()
                 loadImage(response.message, '#result-image-container')
-                alert(response.message);
-                alert('Your new event has been successfully submitted!');
             });
 
             this.on("error", function (files, response) {

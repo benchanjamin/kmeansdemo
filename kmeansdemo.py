@@ -27,20 +27,33 @@ def handle_pic():
         number_of_segments = int(request.form.get("segments"))
         number_of_iterations = int(request.form.get("iterations"))
     except ValueError:
-        message = "Please enter int values for '# of Segments' and '# of Iterations'"
+        message = "Please enter int values for '# of Segments' and '# of Iterations.'"
         return jsonify(message=message), 400
     if not number_of_segments or not (1 <= number_of_segments <= 9):
-        message = "Please enter an int value for '# of Segments' between 1 inclusive and 9 inclusive"
+        message = "Please enter an int value for '# of Segments' between 1 inclusive and 9 inclusive."
         return jsonify(message=message), 400
     if not number_of_iterations or not (1 <= number_of_iterations <= 100):
-        message = "Please enter an int value for '# of Iterations' between 1 inclusive and 100 inclusive"
+        message = "Please enter an int value for '# of Iterations' between 1 inclusive and 100 inclusive."
         return jsonify(message=message), 400
 
     picture_to_be_segmented = request.files.to_dict().values()
     if len(picture_to_be_segmented) > 1:
-        message = "You added more than one picture. Please submit only one picture!"
+        message = "You added more than one picture. Please submit only one image."
+        return jsonify(message=message), 400
+    if len(picture_to_be_segmented) == 0:
+        message = "Please submit an image."
         return jsonify(message=message), 400
     for pic in picture_to_be_segmented:
+        ALLOWED_EXTENSIONS_LOWER = {'png', 'jpg', 'jpeg', 'heic'}
+
+        def allowed_file_lower(filename):
+            return '.' in filename and filename.rsplit(
+                '.', 1)[1].lower() in ALLOWED_EXTENSIONS_LOWER
+
+        if not allowed_file_lower(pic.filename):
+            message = "Please submit an image file."
+            return jsonify(message=message), 400
+
         cloudinary.config(
             cloud_name=os.getenv("CLOUD_NAME"),
             api_key=os.getenv("API_KEY"),

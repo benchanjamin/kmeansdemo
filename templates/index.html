@@ -119,8 +119,9 @@
         let socket = io.connect('http://127.0.0.1:5000/');
 
         socket.on('upload_progress', function (percentage) {
-            $('#upload-percentage-display').attr('aria-valuenow', percentage).css('width', percentage + '%').text(
-                String(Math.ceil(parseInt(percentage))));
+            $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(
+                parseInt(percentage)))).css('width', String(Math.round(parseInt(percentage)))+ '%').text(
+                String(Math.round(parseInt(percentage))) + '%');
         })
 
     })

@@ -116,7 +116,7 @@
 <script>
     $(document).ready(function () {
         dropzoneInit();
-        let socket = io.connect('https://kmeansdemo.herokuapp.com/');
+        let socket = io();
 
         socket.on('upload_progress', function (percentage) {
             $('#upload-percentage-display').attr('aria-valuenow', String(Math.round(

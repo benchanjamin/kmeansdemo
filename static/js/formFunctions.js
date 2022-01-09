@@ -74,6 +74,9 @@ function dropzoneInit() {
                     // pass
                 } else if (myDropzone.files.length === 0) {
                     alert("Please add an image.")
+                }
+                else if (response === 'Upload canceled.') {
+                    alert("Upload canceled.")
                 } else {
                     alert(response.message);
                     $('#upload-percentage-display').attr('aria-valuenow', '0').css('width', '0' + '%')

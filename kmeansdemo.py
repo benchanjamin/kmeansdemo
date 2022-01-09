@@ -57,6 +57,7 @@ def handle_pic():
 
         if not allowed_file_lower(pic.filename):
             message = "Please submit an image file."
+            socket_io.emit('upload_progress', 0)
             return jsonify(message=message), 400
 
         socket_io.emit('start_upload')

@@ -82,3 +82,6 @@ def handle_pic():
         url_https = url_http.replace('http://', 'https://')
         message = url_https
         return jsonify(message=message, success=True)
+    
+if __name__ == "__main__":
+    socket_io.run(app)
